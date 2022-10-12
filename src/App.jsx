@@ -12,10 +12,10 @@ const App = () => {
   const [listCharacters, setListCharacters] = useState([]);
   const getCharacters = async () => {
     setOpen(true);
+    setListCharacters([]);
     const pageAct = page * 21;
     await axios.get(`https://gateway.marvel.com:443/v1/public/characters?limit=21&offset=${pageAct}&apikey=${apikey}`).then((rest) => {
       const { data } = rest.data;
-      setTotal(data.total);
       const list = data.results.map(item => ({
         thumbnail: item.thumbnail,
         name: item.name,
@@ -23,8 +23,11 @@ const App = () => {
         id: item.id,
         stories: item.stories.returned,
       }));
-      setListCharacters(list);
-      setOpen(false);
+      setTimeout(()=>{
+        setTotal(data.total);
+        setListCharacters(list);
+        setOpen(false);
+      },3000);
     });
   }
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Card, Nav } from 'react-bootstrap';
 import { Button } from '@mui/material';
 import  "../index.css"
-const ItemsPages = ({ countPages, page, newPage }) => {
+const ItemsPages = ({ countPages=1, page, newPage }) => {
 
     return (
         <div style={{marginLeft:"20px"}}>
@@ -10,7 +10,7 @@ const ItemsPages = ({ countPages, page, newPage }) => {
                 <Nav style={{marginBottom: "-15px"}}>
                     <ul className="pagination">
                         {
-                            Array.from(Array(countPages)).map((item, index) => (
+                            Array.from(Array(countPages===0?1:countPages)).map((item, index) => (
                                 <li className={page === index ? 'active page-item' : 'page-item'} key={index}>
                                     <span className="page-link" role="button" onClick={() => { newPage(index) }}>{index + 1}</span>
                                 </li>
