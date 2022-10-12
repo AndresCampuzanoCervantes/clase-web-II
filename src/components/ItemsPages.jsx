@@ -5,9 +5,9 @@ import  "../index.css"
 const ItemsPages = ({ countPages, page, newPage }) => {
 
     return (
-        <>
-            <Card.Footer className="scrollbar animate__animated animate__fadeIn m-2">
-                <Nav aria-label="Page navigation">
+        <div style={{marginLeft:"20px"}}>
+            <Card.Footer className="scrollbar mt-2">
+                <Nav style={{marginBottom: "-15px"}}>
                     <ul className="pagination">
                         {
                             Array.from(Array(countPages)).map((item, index) => (
@@ -28,7 +28,7 @@ const ItemsPages = ({ countPages, page, newPage }) => {
                 </Button>
             </div>
 
-        </>
+        </div>
 
     )
 }

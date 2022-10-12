@@ -34,10 +34,10 @@ const App = () => {
   };
 
   return (
-    <div className='align-self-center justify-content-center'>
+    <div className='m-3'>
       <ItemsPages page={page} countPages={Math.ceil(total / 21)} newPage={newPages} />
-      <Container >
-        <div className="row justify-content-start">
+      <dev className="container" >
+        <div className="row justify-content-center  "> 
           {
             listCharacters.length > 0 && (
               listCharacters.map(item => (
@@ -46,7 +46,7 @@ const App = () => {
             )
           }
         </div>
-      </Container>
+      </dev>
       <ItemsPages page={page} countPages={Math.ceil(total / 21)} newPage={newPages} />
     </div>
   )
