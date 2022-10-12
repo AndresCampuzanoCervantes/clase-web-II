@@ -10,16 +10,16 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [listCharacters, setListCharacters] = useState([]);
   const getCharacters = async () => {
-    const pageAct = page * 20;
-    await axios.get(`https://gateway.marvel.com:443/v1/public/characters?offset=${pageAct}&apikey=${apikey}`).then((rest) => {
+    const pageAct = page * 21;
+    await axios.get(`https://gateway.marvel.com:443/v1/public/characters?limit=21&offset=${pageAct}&apikey=${apikey}`).then((rest) => {
       const { data } = rest.data;
       setTotal(data.total);
-      console.log(data);
       const list = data.results.map(item => ({
         thumbnail: item.thumbnail,
         name: item.name,
         description: item.description,
         id: item.id,
+        stories: item.stories.returned,
       }));
       setListCharacters(list);
     });
@@ -34,20 +34,20 @@ const App = () => {
   };
 
   return (
-    <div className='align-self-center justify-content-center'>
-      <ItemsPages page={page} countPages={Math.ceil(total / 20)} newPage={newPages} />
-      <Container >
-        <div className="row justify-content-start">
+    <div className='m-3'>
+      <ItemsPages page={page} countPages={Math.ceil(total / 21)} newPage={newPages} />
+      <dev className="container" >
+        <div className="row justify-content-center  "> 
           {
             listCharacters.length > 0 && (
               listCharacters.map(item => (
-                <Card key={item.id} name={item.name} description={item.description} thumbnail={item.thumbnail} />
+                <Card key={item.id} name={item.name} description={item.description} thumbnail={item.thumbnail} stories={item.stories} />
               ))
             )
           }
         </div>
-      </Container>
-      <ItemsPages page={page} countPages={Math.ceil(total / 20)} newPage={newPages} />
+      </dev>
+      <ItemsPages page={page} countPages={Math.ceil(total / 21)} newPage={newPages} />
     </div>
   )
 };

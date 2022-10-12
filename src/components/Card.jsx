@@ -1,8 +1,10 @@
 import React from 'react'
 import { CardActionArea, Typography, CardMedia, CardContent, Card } from '@mui/material';
-const CardCustom = ({ name, description, thumbnail }) => {
+import 'animate.css';
+
+const CardCustom = ({ name, description, thumbnail, stories }) => {
     return (
-        <Card sx={{ maxWidth: 345, m:2 }}>
+        <Card sx={{ maxWidth: 345, m:2 }} className="animate__animated animate__backInDown">
             <CardActionArea>
                 <CardMedia
                     component="img"
@@ -12,6 +14,9 @@ const CardCustom = ({ name, description, thumbnail }) => {
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {name}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="div">
+                        Historias: {stories}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {description}
